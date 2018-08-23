@@ -1,0 +1,11 @@
+{
+  "name": "string-milliseconds",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [
+    "milliseconds"
+  ],
+  "author": "SILENT",
+  "license": "MIT"
+}
