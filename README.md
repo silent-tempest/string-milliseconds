@@ -4,7 +4,7 @@ This function lets you convert a human-readable time string to milliseconds numb
 
 ## Install
 
-`npm i git+https://github.com/tikhiy/string-milliseconds#v2.0.0`
+`npm i git+https://github.com/tikhiy/string-milliseconds#v2.0.1`
 
 ## Import
 
