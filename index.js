@@ -2,32 +2,29 @@
 
 var toString = Object.prototype.toString;
 
+var regex = /^([+-]?(?:\d+|\d*\.\d+)?)\s?(months?|d(?:ays?)?|h(?:ours?)?|m(?:inutes?)?|s(?:econds?)?)$/;
+
 /**
- * @param {number|string} value
- * @returns {number}
+ * @param  {number | string} string
+ * @return {number}
+ *
  * @example
- * milliseconds( 'millisecond' );      // -> 1
- * milliseconds( '500 milliseconds' ); // -> 500
- * milliseconds( '10s' );              // -> 10000
- * milliseconds( 10 );                 // -> 10000
- * milliseconds( '-1 day' );           // -> -86400000
- * milliseconds( '2 years' );          // -> 63072000000
- * milliseconds( 'abc' );
- * // TypeError: cannot convert abc ([object String]) into milliseconds
+ * ms( '24 hours' ); // -> 86400000
  */
-function milliseconds ( value ) {
+function milliseconds ( string ) {
   var milliseconds;
 
-  if ( typeof value === 'number' ) {
-    milliseconds = value * 1000;
-  } else if ( typeof value === 'string' && /^\s*([+-]?(?:\d+|\d*\.\d+))?\s*(ms|s|m|h|d|y|milliseconds?|seconds?|minutes?|hours?|days?|years?)\s*$/.test( value ) ) {
-    milliseconds = RegExp.$1 ? + RegExp.$1 : 1;
+  if ( typeof string === 'number' ) {
+    milliseconds = string * 1000;
+  } else if ( typeof string === 'string' && regex.test( string ) ) {
+    milliseconds = RegExp.$1
+      ? Number( RegExp.$1 )
+      : 1;
 
     switch ( RegExp.$2 ) {
-      case 'years':
-      case 'year':
-      case 'y':
-        milliseconds *= 365;
+      case 'months':
+      case 'month':
+        milliseconds *= 365 / 12;
         /* falls through */
       case 'days':
       case 'day':
@@ -50,10 +47,10 @@ function milliseconds ( value ) {
         milliseconds *= 1000;
     }
   } else {
-    throw TypeError( 'cannot convert ' + value + ' (' + toString.call( value ) + ') into milliseconds' );
+    throw new Error( 'could not convert ' + string + ' (' + toString.call( string ) + ') into milliseconds' );
   }
 
-  return milliseconds || 0;
+  return Number(milliseconds.toFixed(2)) || 0;
 }
 
 module.exports = milliseconds;

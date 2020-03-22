@@ -1,11 +1,22 @@
 {
   "name": "string-milliseconds",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "keywords": [
     "milliseconds"
   ],
-  "author": "SILENT",
-  "license": "MIT"
+  "author": "Vladislav Tikhiy (SILENT)",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tikhiy/string-milliseconds.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tikhiy/string-milliseconds/issues"
+  },
+  "homepage": "https://github.com/tikhiy/string-milliseconds#readme",
+  "description": ""
 }
